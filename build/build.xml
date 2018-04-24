@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- the jar file would be build directly after running this script -->
+<project name="callerCallee" default="jar" basedir=".">
+
+    <property name="src" value="."/>
+    <property name="classes" value="classes"/>
+    <property name="jars" value="jars"/>
+    <property name="main" value="abgabe03/caller/Caller"/>
+    <property name="jar.file" value="${jars}/${ant.project.name}-launch.jar"/>
+
+
+    <target name="compile">
+	    <javac srcdir="${src}" destdir="${classes}"/>
+    </target>
+
+   <!-- Compile the project before generating a runnable jar file-->
+    <target name="jar" depends="compile">
+    	<jar destfile="${jar.file}" basedir="${classes}">
+    	  <manifest>
+    	  	<attribute name="manifest-version" value="1.0"/>
+    	  	<attribute name="Main-Class" value="${main}"/>
+    	  	<attribute name="Class-path" value="${main}"/>
+    	  </manifest> 
+    	</jar>
+    </target>
+    
+</project>
